@@ -27,11 +27,13 @@ class ArticleController extends AbstractController
         $article->setDateDeCreation(new DateTime('2022-10-30'));
         $article->setCategorie($categorie);
 
+        // Indique à Doctrine que tu souhaites SAUVER l'Article VIA persist()
         $entityManager->persist($article);
+
+        // Execute l'objet (INSERT query)
         $entityManager->flush();
 
-
-
+        // return new Response('Saved new product with id '.$product->getId());
         return $this->render('article/index.html.twig', [
             'controller_name' => 'ArticleController',
         ]);
