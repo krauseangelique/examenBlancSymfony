@@ -26,11 +26,13 @@ class Article
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateDeCreation = null;
 
-    #[ORM\ManyToOne(
-        inversedBy: 'articles', 
-        cascade : ["persist"])
+    #[
+        ORM\ManyToOne(
+            inversedBy: 'articles',
+            cascade: ["persist"]
+        )
     ]
-    #[ORM\JoinColumn(nullable: false )]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
     public function getId(): ?int
@@ -97,6 +99,8 @@ class Article
 
         return $this;
     }
+
+    // Attention il FAUT ajouter la methode __toString()
     public function __toString()
     {
         return "article";
