@@ -27,4 +27,17 @@ class CategorieController extends AbstractController
             'controller_name' => 'CategorieController',
         ]);
     }
+
+    // la route categorie LISTE toutes les categories
+    #[Route('/categories', name: 'app_categories')]
+    public function listeCategorie(EntityManagerInterface $entityManager): Response
+    {
+        // $repository devient un objet categorieRepository
+        $repository = $entityManager->getRepository(Categorie::class);
+        $categories = $repository->findAll();
+
+        return $this->render('categorie/categories.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
 }
